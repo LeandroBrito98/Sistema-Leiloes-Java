@@ -1,0 +1,18 @@
+# Arquivos gerados pelo NetBeans
+**/build/
+**/dist/
+**/nbproject/private/
+**/nbbuild/
+**/.nb-gradle/
+
+# Arquivos temporários
+*.class
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Configurações locais e credenciais
+.env
+.env.*
