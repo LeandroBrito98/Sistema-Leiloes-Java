@@ -19,6 +19,22 @@ public class ProdutosDAO {
     }
 
     public ArrayList<ProdutosDTO> listarProdutos() throws SQLException {
-        return new ArrayList<>();
+        ArrayList<ProdutosDTO> produtos = new ArrayList<>();
+        String sql = "SELECT id, nome, valor, status FROM produtos ORDER BY id";
+        try (Connection conn = new conectaDAO().connectDB()) {
+            if (conn == null) throw new SQLException("Nao foi possivel conectar ao banco uc11.");
+            try (PreparedStatement stmt = conn.prepareStatement(sql);
+                 ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    ProdutosDTO produto = new ProdutosDTO();
+                    produto.setId(rs.getInt("id"));
+                    produto.setNome(rs.getString("nome"));
+                    produto.setValor(rs.getInt("valor"));
+                    produto.setStatus(rs.getString("status"));
+                    produtos.add(produto);
+                }
+            }
+        }
+        return produtos;
     }
 }
